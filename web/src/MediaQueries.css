@@ -1,0 +1,706 @@
+.mobile-menu-overlay.open::before {
+  opacity: 1;
+}
+
+/* ============================================
+   COMPREHENSIVE MOBILE RESPONSIVE DESIGN
+   ============================================ */
+
+/* ===== LARGE TABLETS & SMALL LAPTOPS (768px - 990px) ===== */
+@media screen and (max-width: 990px) {
+  /* Hide desktop nav, show hamburger */
+  .lux-nav-links {
+    display: none;
+  }
+  
+  .hamburger-menu {
+    display: flex;
+  }
+  
+  /* Navbar adjustments */
+  .lux-navbar {
+    width: calc(100% - 40px);
+    height: 65px;
+  }
+  
+  .lux-nav-container {
+    padding: 0 20px;
+  }
+  
+  /* Section adjustments */
+  .welcome-section,
+  .why-section,
+  .about-section,
+  .contact-section {
+    padding: 80px 5%;
+    min-height: auto;
+  }
+  
+  .section-container {
+    flex-direction: column;
+    gap: 50px;
+  }
+  
+  .section-container.reverse {
+    flex-direction: column;
+  }
+  
+  .text-side,
+  .text-side1,
+  .text-side2 {
+    max-width: 100%;
+  }
+  
+  /* Why Us Section - BIGGER IMAGES */
+
+  .image-side1,
+  .image-side2 {
+    width: 100%;
+     max-height: 500px;
+  }
+
+    .image-side img{
+    max-height: 300px;
+    width: 800px;
+  }
+  
+
+  /* About Section - SMALLER FONTS */
+  .about-text h2 {
+    font-size: 32px;
+  }
+  
+  .about-text p {
+    font-size: 14px;
+  }
+  
+  .about-image {
+    max-height: 450px;
+  }
+  
+  /* Contact Section */
+  .contact-section .section-container {
+    flex-direction: column;
+  }
+  
+  .contact-content,
+  .contact-info {
+    max-width: 100%;
+  }
+
+.contact-statue img {
+    max-width: 100%;
+    max-height: 300px;
+  }
+  
+  /* Footer */
+  .footer-container {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .footer-techchase {
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+/* ===== TABLETS (600px - 767px) ===== */
+@media screen and (max-width: 767px) {
+  /* Navbar */
+  .lux-navbar {
+    top: 15px;
+    width: calc(100% - 30px);
+    height: 60px;
+  }
+  
+  .lux-logo img {
+    height: 36px;
+  }
+  
+  .lux-logo span {
+    font-size: 16px;
+  }
+  
+  /* Mobile Menu */
+  .mobile-menu-overlay {
+    top: 70px;
+    max-width: 280px;
+  }
+  
+  .mobile-nav-links a {
+    font-size: 16px;
+    padding: 12px 18px;
+    height: 48px;
+  }
+
+  .slider-container{
+    margin: 0;
+    height: 100%;
+  }
+
+
+  
+  /* Sections */
+  .welcome-section,
+  .why-section,
+  .about-section,
+  .contact-section {
+    padding: 60px 4%;
+  }
+  
+  .text-side h2,
+  .text-side1 h2,
+  .text-side2 h2,
+  .contact-content h2,
+  .contact-info h3 {
+    font-size: 26px;
+  }
+  
+  .section-desc,
+  .features-list li {
+    font-size: 16px;
+  }
+  
+  /* Why Us Section - BIGGER IMAGES */
+
+  .image-side1 img,
+  .image-side2 img {
+    max-height: 450px;
+  }
+
+      .image-side img{
+    max-height: 200px;
+    width: 500px;
+  }
+  
+  
+  /* About Section - SMALLER FONTS */
+  .about-text h2 {
+    font-size: 28px;
+  }
+  
+  .about-text p {
+    font-size: 13px;
+  }
+  
+  .about-image {
+    max-height: 400px;
+  }
+  
+  /* Theme Toggle Button */
+  .theme-toggle {
+    width: 55px;
+    height: 55px;
+    bottom: 25px;
+    right: 25px;
+  }
+  
+  .theme-toggle-icon {
+    font-size: 24px;
+  }
+}
+
+/* ===== LARGE MOBILE PHONES (480px - 599px) ===== */
+@media screen and (max-width: 599px) {
+  /* Navbar */
+  .lux-navbar {
+    top: 10px;
+    width: calc(100% - 20px);
+    height: 55px;
+  }
+  
+  .lux-nav-container {
+    padding: 0 15px;
+  }
+  
+  .lux-logo img {
+    height: 32px;
+  }
+  
+  .lux-logo span {
+    font-size: 14px;
+  }
+  
+  /* Mobile Menu */
+  .mobile-menu-overlay {
+    top: 65px;
+    right: 10px;
+    width: calc(100% - 20px);
+    max-width: 250px;
+  }
+  
+  .mobile-menu-overlay.open {
+    padding: 20px 15px;
+    max-height: 420px;
+  }
+  
+  .mobile-nav-links {
+    gap: 12px;
+  }
+  
+  .mobile-nav-links a {
+    font-size: 15px;
+    padding: 11px 16px;
+    height: 46px;
+  }
+  
+
+  /* Sections */
+  .welcome-section,
+  .why-section,
+  .about-section,
+  .contact-section {
+    padding: 50px 3%;
+  }
+  
+  .section-container {
+    gap: 35px;
+  }
+  
+  .text-side,
+  .text-side1,
+  .text-side2 {
+    padding: 18px;
+  }
+  
+  .text-side h2,
+  .text-side1 h2,
+  .text-side2 h2,
+  .contact-content h2 {
+    font-size: 24px;
+    margin-bottom: 0.8rem;
+  }
+  
+  .contact-info h3 {
+    font-size: 22px;
+  }
+  
+  .section-desc,
+  .features-list li {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  
+  .features-list li {
+    padding-left: 25px;
+  }
+  
+  /* Why Us Section - BIGGER IMAGES */
+  
+  .image-side1 img,
+  .image-side2 img {
+    max-height: 400px;
+  }
+  .image-side img{
+    max-height: 200px;
+    width: 400px;
+  }
+
+  
+  
+  /* About Section - SMALLER FONTS */
+  .about-text h2 {
+    font-size: 26px;
+  }
+  
+  .about-text p {
+    font-size: 13px;
+  }
+  
+  .about-image {
+    max-height: 200px;
+   
+  }
+  
+  /* Contact */
+  .contact-info {
+    padding: 25px;
+  }
+  
+  .contact-statue img {
+    max-height: 280px;
+  }
+  
+  .enquiry-form input,
+  .enquiry-form textarea {
+    padding: 13px;
+    font-size: 15px;
+  }
+  
+  .form-submit {
+    width: 100%;
+    padding: 13px 30px !important;
+  }
+  
+  /* Footer */
+  .footer-container {
+    padding: 0 15px;
+  }
+  
+  .footer-copyright p,
+  .footer-techchase p {
+    font-size: 0.9rem;
+  }
+  
+  .footer-brand-logo {
+    height: 35px;
+  }
+  
+  /* Theme Toggle */
+  .theme-toggle {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .theme-toggle-icon {
+    font-size: 22px;
+  }
+}
+
+/* ===== STANDARD MOBILE PHONES (400px - 490px) ===== */
+@media screen and (max-width: 500px) {
+  /* Navbar */
+  .lux-navbar {
+    height: 52px;
+  }
+  
+  .lux-logo img {
+    height: 30px;
+  }
+  
+  .lux-logo span {
+    font-size: 13px;
+  }
+  
+  .hamburger-menu span {
+    width: 22px;
+    height: 2.5px;
+  }
+  
+  /* Mobile Menu */
+  .mobile-menu-overlay {
+    top: 62px;
+    max-width: 230px;
+  }
+  
+  .mobile-menu-overlay.open {
+    max-height: 400px;
+  }
+  
+  .mobile-nav-links a {
+    font-size: 14px;
+    padding: 10px 14px;
+    height: 44px;
+  }
+  
+  /* Sections */
+  .welcome-section,
+  .why-section,
+  .about-section,
+  .contact-section {
+    padding: 45px 3%;
+  }
+  
+  .section-container {
+    gap: 30px;
+  }
+  
+  .text-side,
+  .text-side1,
+  .text-side2 {
+    padding: 16px;
+  }
+  
+  .text-side h2,
+  .text-side1 h2,
+  .text-side2 h2,
+  .contact-content h2 {
+    font-size: 22px;
+  }
+  
+  .contact-info h3 {
+    font-size: 20px;
+  }
+  
+  .section-desc,
+  .features-list li {
+    font-size: 14px;
+  }
+  
+  /* Why Us Section - BIGGER IMAGES */
+  .image-side1 img,
+  .image-side2 img {
+    max-height: 350px;
+  }
+      .image-side img{
+    max-height: 200px;
+    width: 400px;
+  }
+  
+  /* About Section - SMALLER FONTS */
+  .about-text h2 {
+    font-size: 24px;
+  }
+  
+  .about-text p {
+    font-size: 12px;
+  }
+  
+  .about-image {
+    max-height: 330px;
+  }
+  
+  /* Contact */
+  .contact-info {
+    padding: 20px;
+  }
+  
+  .contact-info p {
+    font-size: 15px;
+  }
+  
+  .contact-statue img {
+    max-height: 250px;
+  }
+  
+  .enquiry-form input,
+  .enquiry-form textarea {
+    padding: 12px;
+    font-size: 14px;
+  }
+  
+  /* Footer */
+  .footer-copyright p,
+  .footer-techchase p {
+    font-size: 0.85rem;
+  }
+  
+  .footer-brand-logo {
+    height: 32px;
+  }
+}
+
+/* ===== SMALL MOBILE PHONES (330px - 399px) ===== */
+@media screen and (max-width: 399px) {
+  /* Navbar */
+  .lux-navbar {
+    height: 50px;
+    width: calc(100% - 15px);
+  }
+  
+  .lux-nav-container {
+    padding: 0 12px;
+  }
+  
+  .lux-logo img {
+    height: 28px;
+  }
+  
+  .lux-logo span {
+    font-size: 12px;
+  }
+  
+  .hamburger-menu span {
+    width: 20px;
+  }
+  
+  /* Mobile Menu */
+  .mobile-menu-overlay {
+    top: 60px;
+    max-width: 200px;
+  }
+  
+  .mobile-menu-overlay.open {
+    padding: 18px 12px;
+    max-height: 380px;
+  }
+  
+  .mobile-nav-links {
+    gap: 10px;
+  }
+  
+  .mobile-nav-links a {
+    font-size: 13px;
+    padding: 9px 12px;
+    height: 42px;
+  }
+  
+  /* Sections */
+  .welcome-section,
+  .why-section,
+  .about-section,
+  .contact-section {
+    padding: 40px 2.5%;
+  }
+  
+  .section-container {
+    gap: 25px;
+  }
+  
+  .text-side,
+  .text-side1,
+  .text-side2 {
+    padding: 14px;
+  }
+  
+  .text-side h2,
+  .text-side1 h2,
+  .text-side2 h2,
+  .contact-content h2 {
+    font-size: 20px;
+  }
+  
+  .contact-info h3 {
+    font-size: 18px;
+  }
+  
+  .section-desc,
+  .features-list li {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  
+  .features-list li {
+    padding-left: 22px;
+    margin: 0.8rem 0;
+  }
+  
+  /* Why Us Section - BIGGER IMAGES */
+  .image-side1 img,
+  .image-side2 img {
+    max-height: 300px;
+  }
+      .image-side img{
+    max-height: 200px;
+    width: 300px;
+  }
+  
+  
+  /* About Section - SMALLER FONTS */
+  .about-text h2 {
+    font-size: 22px;
+  }
+  
+  .about-text p {
+    font-size: 10px;
+  }
+  
+  .about-image {
+    max-height: 290px;
+  }
+  
+  /* Contact */
+  .contact-info {
+    padding: 18px;
+  }
+  
+  .contact-info p {
+    font-size: 14px;
+  }
+  
+  .contact-statue img {
+    max-height: 220px;
+  }
+  
+  .enquiry-form {
+    gap: 14px;
+  }
+  
+  .enquiry-form input,
+  .enquiry-form textarea {
+    padding: 11px;
+    font-size: 13px;
+  }
+  
+  .form-submit {
+    padding: 11px 25px !important;
+    font-size: 13px;
+  }
+  
+  /* Footer */
+  .site-footer {
+    padding: 1.5rem 0.8rem;
+  }
+  
+  .footer-copyright p,
+  .footer-techchase p {
+    font-size: 0.8rem;
+  }
+  
+  .footer-brand-logo {
+    height: 30px;
+  }
+  
+  /* Theme Toggle */
+  .theme-toggle {
+    width: 45px;
+    height: 45px;
+    bottom: 15px;
+    right: 15px;
+  }
+  
+  .theme-toggle-icon {
+    font-size: 20px;
+  }
+}
+
+/* ===== EXTRA SMALL PHONES (330px and below) ===== */
+@media screen and (max-width: 330px) {
+  .lux-navbar {
+    height: 48px;
+  }
+  
+  .lux-logo span {
+    display: none;
+  }
+  
+
+  
+  .mobile-menu-overlay {
+    max-width: 180px;
+  }
+  
+  .mobile-nav-links a {
+    font-size: 12px;
+    height: 40px;
+  }
+  
+  .text-side h2,
+  .text-side1 h2,
+  .text-side2 h2 {
+    font-size: 18px;
+  }
+  .section-desc,
+  .features-list li {
+    font-size: 12px;
+  }
+  
+  /* Why Us Section - BIGGER IMAGES */
+ 
+  .image-side1 img,
+  .image-side2 img {
+    max-height: 260px;
+  }
+      .image-side img{
+    max-height: 200px;
+    width: 600px;
+  }
+  
+  
+  /* About Section - SMALLER FONTS */
+  .about-text h2 {
+    font-size: 20px;
+  }
+  
+  .about-text p {
+    font-size: 10px;
+  }
+  
+  .about-image {
+    max-height: 250px;
+  }
+}

@@ -1,0 +1,217 @@
+:root {
+  /* Colors - Light Mode */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8eac8;
+  --color-bg-tertiary: #f4deb1;
+  --color-text-primary: #2d1c00;
+  --color-text-secondary: #444444;
+  --color-text-tertiary: #5e5d5d;
+  --color-card-bg: #ffffff;
+  --color-card-hover: #e4e7ea;
+  
+  /* Gold Gradient */
+  --gold-gradient: linear-gradient(110deg, #9f7c1f, #d4af37, #f6e27a, #d4af37, #9f7c1f);
+  --gold-light: #f8d474;
+  --gold-medium: #d4af37;
+  --gold-dark: #8d6e00;
+  --gold-accent: #aa7d22;
+  
+  /* Effects */
+  --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 20px 60px rgba(170, 125, 34, 0.15);
+  --shadow-gold: 0 8px 25px rgba(212, 164, 54, 0.4);
+  
+  /* Transitions */
+  --transition-base: all 0.3s ease;
+  --transition-slow: all 0.5s ease;
+  
+  /* Spacing */
+  --section-padding: 120px 8%;
+  --navbar-height: 70px;
+  --navbar-offset: 80px;
+}
+
+
+
+/* ==========================================
+   RESET & BASE ELEMENTS
+   ========================================== */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--color-bg-primary);
+  color: var(--color-text-secondary);
+  overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+  line-height: 1.6;
+}
+
+#root,
+.App,
+.home-page {
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+section {
+  scroll-margin-top: var(--navbar-offset);
+  width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ==========================================
+   TYPOGRAPHY
+   ========================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'DM Serif Display', serif;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.heading-primary {
+  font-size: clamp(32px, 5vw, 50px);
+  color: var(--color-text-primary);
+}
+
+.heading-secondary {
+  font-size: clamp(24px, 3.5vw, 30px);
+  background: var(--gold-gradient);
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldShimmer 2s ease-in-out infinite;
+}
+
+.text-body {
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+@keyframes goldShimmer {
+  0%, 100% { background-position: 0%; }
+  50% { background-position: 100%; }
+}
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: var(--section-padding);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: clamp(40px, 8vw, 100px);
+  width: 100%;
+}
+
+.section-container--reverse {
+  flex-direction: row-reverse;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================
+   RESPONSIVE BREAKPOINTS
+   ========================================== */
+
+@media (max-width: 1200px) {
+  :root {
+    --section-padding: 80px 6%;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 60px 5%;
+  }
+  
+  .section-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .section-container--reverse {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --section-padding: 40px 5%;
+  }
+}
+
+

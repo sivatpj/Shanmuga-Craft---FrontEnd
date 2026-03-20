@@ -1,0 +1,23 @@
+PostContact
+{
+  "from_name":    "Test User",
+  "from_phone":   "9876543210",
+  "from_email":   "test@gmail.com",
+  "inquiry_type": "Buy Coins",
+  "coin_type":    "24K Gold Coin",
+  "coin_weight":  "10g",
+  "budget":       "₹10,000",
+  "contact_time": "Morning (9am - 12pm)",
+  "message":      "I want to buy gold coins"
+}
+
+GetContact
+{
+  "result": "returns all inquiries - no body needed"
+}
+
+PatchContact
+{
+  "id":     1,
+  "status": "done"
+}
