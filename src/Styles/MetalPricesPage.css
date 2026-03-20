@@ -1,0 +1,763 @@
+/* ── Keyframes ─────────────────────────────────────────────── */
+@keyframes shimmerGold {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes shimmerSilverMetal {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-18px); }
+  to   { opacity: 1; transform: translateX(0);     }
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: scale(1)   translate(0,0);         opacity: 0.13; }
+  33%       { transform: scale(1.2) translate(28px,-18px);  opacity: 0.19; }
+  66%       { transform: scale(0.9) translate(-18px,14px);  opacity: 0.09; }
+}
+
+@keyframes tabPop {
+  0%   { transform: scale(1);    }
+  45%  { transform: scale(1.06); }
+  100% { transform: scale(1);    }
+}
+
+@keyframes pricePop {
+  0%   { transform: scale(1);    }
+  40%  { transform: scale(1.08); }
+  100% { transform: scale(1);    }
+}
+
+@keyframes rotateCoin {
+  0%   { transform: rotateY(0deg);   }
+  100% { transform: rotateY(360deg); }
+}
+
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+  50%       { box-shadow: 0 0 0 5px rgba(34,197,94,0.25); }
+}
+
+/* ── Page wrapper (gold default) ───────────────────────────── */
+.metal-page {
+  padding: 90px 20px;
+  background: #F8EAC8;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  transition: background 0.5s ease;
+}
+
+.metal-page::before,
+.metal-page::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: orbFloat 9s ease-in-out infinite;
+}
+
+.metal-page::before {
+  width: 600px; height: 600px;
+  top: -150px; left: -150px;
+  background: radial-gradient(circle, rgba(212,160,23,0.18) 0%, transparent 70%);
+}
+
+.metal-page::after {
+  width: 500px; height: 500px;
+  bottom: -100px; right: -100px;
+  background: radial-gradient(circle, rgba(244,196,48,0.13) 0%, transparent 70%);
+  animation-delay: -4.5s;
+}
+
+/* silver background override */
+.metal-page--silver {
+  background: linear-gradient(135deg, #e2e8f0 0%, #f1f5f9 50%, #cbd5e1 100%);
+}
+
+.metal-page--silver::before {
+  background: radial-gradient(circle, rgba(100,116,139,0.18) 0%, transparent 70%);
+}
+
+.metal-page--silver::after {
+  background: radial-gradient(circle, rgba(148,163,184,0.13) 0%, transparent 70%);
+}
+
+/* ── Container ─────────────────────────────────────────────── */
+.metal-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 0.6s ease both;
+}
+
+/* ── Page heading ──────────────────────────────────────────── */
+.metal-page-heading {
+  text-align: center;
+  margin-bottom: 38px;
+  animation: fadeInUp 0.5s ease both;
+}
+
+.metal-main-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+  background: linear-gradient(
+    90deg,
+    #927502 0%, #412e00 20%,
+    #d4a017 40%, #6c5702 60%,
+    #412e00 80%, #927502 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerGold 4s linear infinite;
+}
+
+.metal-main-title--silver {
+  background: linear-gradient(
+    90deg,
+    #334155 0%, #1e293b 20%,
+    #94a3b8 40%, #475569 60%,
+    #1e293b 80%, #334155 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerSilverMetal 4s linear infinite;
+}
+
+.metal-main-subtitle {
+  font-size: 1.1rem;
+  color: #936804;
+  margin: 0;
+}
+
+.metal-main-subtitle--silver {
+  color: #64748b;
+}
+
+/* ── Tab row ───────────────────────────────────────────────── */
+.metal-tab-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.metal-tab-btn {
+  padding: 10px 28px;
+  border-radius: 50px;
+  border: 2px solid transparent;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: inherit;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.metal-tab-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.15);
+  opacity: 0;
+  transition: opacity 0.2s;
+  border-radius: inherit;
+}
+
+.metal-tab-btn:hover::after { opacity: 1; }
+.metal-tab-btn:active        { animation: tabPop 0.3s ease; }
+
+.metal-tab-btn--gold-active {
+  background: linear-gradient(135deg, #926f0e, #5b4403);
+  color: #fde68a;
+  border-color: #c9a84c;
+  box-shadow: 0 4px 16px rgba(146,111,14,0.45);
+  transform: translateY(-2px);
+}
+
+.metal-tab-btn--silver-active {
+  background: linear-gradient(135deg, #64748b, #334155);
+  color: #e2e8f0;
+  border-color: #94a3b8;
+  box-shadow: 0 4px 16px rgba(100,116,139,0.45);
+  transform: translateY(-2px);
+}
+
+.metal-tab-btn--inactive {
+  background: rgba(255,255,255,0.18);
+  color: #412e00;
+  border-color: rgba(76,58,2,0.25);
+}
+
+.metal-tab-btn--inactive:hover {
+  background: rgba(255,255,255,0.32);
+  transform: translateY(-1px);
+}
+
+/* ── Live status ───────────────────────────────────────────── */
+.metal-live-status {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.metal-live-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background 0.3s ease;
+}
+
+.metal-live-dot--connected {
+  background: #22c55e;
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+.metal-live-dot--disconnected {
+  background: #ef4444;
+}
+
+.metal-live-text {
+  font-size: 0.85rem;
+  color: #78716c;
+  font-weight: 600;
+}
+
+/* ── Controls row (city + purity) ──────────────────────────── */
+.metal-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.metal-purity-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.metal-purity-btn {
+  padding: 7px 20px;
+  border-radius: 50px;
+  border: 2px solid transparent;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.metal-purity-btn--gold-active {
+  background: linear-gradient(135deg, #926f0e, #5b4403);
+  color: #fde68a;
+  border-color: #c9a84c;
+  box-shadow: 0 3px 12px rgba(146,111,14,0.42);
+  transform: translateY(-1px);
+}
+
+.metal-purity-btn--gold-inactive {
+  background: rgba(255,255,255,0.18);
+  color: #412e00;
+  border-color: rgba(76,58,2,0.28);
+}
+
+.metal-purity-btn--gold-inactive:hover {
+  background: rgba(255,255,255,0.32);
+  border-color: rgba(146,111,14,0.45);
+  transform: translateY(-1px);
+}
+
+.metal-purity-btn--silver-active {
+  background: linear-gradient(135deg, #64748b, #334155);
+  color: #e2e8f0;
+  border-color: #94a3b8;
+  box-shadow: 0 3px 12px rgba(100,116,139,0.42);
+  transform: translateY(-1px);
+}
+
+.metal-purity-btn--silver-inactive {
+  background: rgba(255,255,255,0.25);
+  color: #334155;
+  border-color: rgba(100,116,139,0.28);
+}
+
+.metal-purity-btn--silver-inactive:hover {
+  background: rgba(255,255,255,0.45);
+  border-color: rgba(100,116,139,0.50);
+  transform: translateY(-1px);
+}
+
+/* ── Rate cards ────────────────────────────────────────────── */
+.metal-rates {
+  display: grid;
+  gap: 26px;
+  margin-bottom: 52px;
+}
+
+.metal-rate-card {
+  border-radius: 22px;
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+  animation: fadeInUp 0.6s ease both;
+}
+
+.metal-rate-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.28), transparent);
+  transition: left 0.55s ease;
+  pointer-events: none;
+}
+
+.metal-rate-card:hover::before { left: 150%; }
+
+.metal-rate-card:nth-child(1) { animation-delay: 0.05s; }
+.metal-rate-card:nth-child(2) { animation-delay: 0.12s; }
+.metal-rate-card:nth-child(3) { animation-delay: 0.19s; }
+
+/* gold card */
+.metal-rate-card--gold {
+  background: linear-gradient(110deg, #e8c155, #dbb845, #dfce7a, #ccaf52, #cea532);
+  border-color: rgba(244,196,48,0.25);
+}
+
+.metal-rate-card--gold:hover {
+  transform: translateY(-7px) scale(1.02);
+  border-color: #7a5c02;
+  box-shadow: 0 20px 50px rgba(212,160,23,0.28), 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* silver card */
+.metal-rate-card--silver {
+  background: linear-gradient(110deg, #e2e8f0, #cbd5e1, #dde4ef, #c8d2e0);
+  border-color: rgba(148,163,184,0.30);
+}
+
+.metal-rate-card--silver:hover {
+  transform: translateY(-7px) scale(1.02);
+  border-color: #475569;
+  box-shadow: 0 20px 50px rgba(100,116,139,0.28), 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.metal-rate-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.metal-rate-city {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.metal-rate-city--gold   { color: #1a1000; }
+.metal-rate-city--silver { color: #1e293b; }
+
+.metal-rate-badge {
+  padding: 4px 13px;
+  border-radius: 50px;
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.metal-rate-badge--gold   { background: rgba(67,51,1,0.22); color: #fff8e7; border: 1px solid rgba(255,255,255,0.15); }
+.metal-rate-badge--silver { background: rgba(30,41,59,0.15); color: #1e293b; border: 1px solid rgba(100,116,139,0.20); }
+
+.metal-rate-price {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  letter-spacing: -1px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  animation: pricePop 0.4s ease both;
+}
+
+.metal-rate-price--gold   { color: #412e00; }
+.metal-rate-price--silver { color: #1e293b; }
+
+.metal-rate-trend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+/* ── Trend badges ──────────────────────────────────────────── */
+.metal-trend-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  transition: transform 0.3s ease;
+}
+
+.metal-trend-badge:hover { transform: scale(1.15); }
+
+.metal-trend-up {
+  background: linear-gradient(135deg, #106f07, #087202);
+  color: #6ee7b7;
+  box-shadow: 0 3px 8px rgba(6,154,16,0.30);
+}
+
+.metal-trend-down {
+  background: linear-gradient(135deg, #991b1b, #7f1d1d);
+  color: #fca5a5;
+  box-shadow: 0 3px 8px rgba(185,28,28,0.30);
+}
+
+.metal-trend-neutral {
+  background: rgba(0,0,0,0.10);
+  color: #78716c;
+}
+
+.metal-trend-text--up      { color: #16a34a !important; }
+.metal-trend-text--down    { color: #dc2626 !important; }
+.metal-trend-text--neutral { color: #412e00; }
+
+/* ── Price table wrapper ───────────────────────────────────── */
+.metal-table-wrapper {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 22px;
+  padding: 36px;
+  margin-bottom: 30px;
+  transition: box-shadow 0.35s ease, border-color 0.35s ease;
+  animation: fadeInUp 0.65s ease both;
+  border: 1px solid transparent;
+}
+
+.metal-table-wrapper--gold {
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(244,196,48,0.28);
+}
+
+.metal-table-wrapper--gold:hover {
+  box-shadow: 0 12px 40px rgba(212,160,23,0.15);
+  border-color: rgba(244,196,48,0.52);
+}
+
+.metal-table-wrapper--silver {
+  background: rgba(255,255,255,0.35);
+  border-color: rgba(148,163,184,0.28);
+}
+
+.metal-table-wrapper--silver:hover {
+  box-shadow: 0 12px 40px rgba(100,116,139,0.15);
+  border-color: rgba(148,163,184,0.52);
+}
+
+.metal-table-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  margin-bottom: 24px;
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.metal-table-title--gold {
+  background: linear-gradient(90deg, #927502 0%, #412e00 20%, #d4a017 40%, #6c5702 60%, #412e00 80%, #927502 100%);
+  animation: shimmerGold 5s linear infinite;
+}
+
+.metal-table-title--silver {
+  background: linear-gradient(90deg, #334155 0%, #1e293b 20%, #94a3b8 40%, #475569 60%, #1e293b 80%, #334155 100%);
+  animation: shimmerSilverMetal 5s linear infinite;
+}
+
+.metal-table-responsive { overflow-x: auto; border-radius: 14px; }
+
+.metal-price-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.metal-table-header {
+  padding: 14px 20px;
+  font-weight: 800;
+  text-align: left;
+  border: none;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.metal-table-header:first-child { border-radius: 12px 0 0 12px; }
+.metal-table-header:last-child  { border-radius: 0 12px 12px 0; }
+
+.metal-table-header--gold   { background: linear-gradient(110deg, #e8c155, #dbb845, #dfce7a, #ccaf52, #cea532); color: #412e00; }
+.metal-table-header--silver { background: linear-gradient(110deg, #e2e8f0, #cbd5e1); color: #1e293b; }
+
+.metal-table-row {
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease;
+}
+
+.metal-table-row:hover { transform: translateX(6px); box-shadow: 4px 4px 16px rgba(0,0,0,0.10); }
+.metal-table-row:hover .metal-table-cell { background: rgba(0,0,0,0.06) !important; }
+
+.metal-table-row--gold           { background: linear-gradient(110deg, #e8c155, #dbb845, #dfce7a, #ccaf52, #cea532); }
+.metal-table-row--gold:nth-child(even)   { background: linear-gradient(110deg, #ddb740, #ccaa38, #d4c568, #c0a445, #c29a28); }
+.metal-table-row--silver         { background: linear-gradient(110deg, #e2e8f0, #cbd5e1, #dde4ef, #c8d2e0); }
+.metal-table-row--silver:nth-child(even) { background: linear-gradient(110deg, #d4dce8, #c2cedd, #cfd8e6, #bbc8d8); }
+
+.metal-table-cell {
+  padding: 15px 20px;
+  border: none;
+  font-size: 1rem;
+  transition: background 0.25s ease;
+  font-variant-numeric: tabular-nums;
+}
+
+.metal-table-cell:first-child { border-radius: 12px 0 0 12px; }
+.metal-table-cell:last-child  { border-radius: 0 12px 12px 0; }
+
+.metal-table-cell--gold   { background: rgba(255,255,255,0.05); color: #412e00; }
+.metal-table-cell--silver { background: rgba(255,255,255,0.25); color: #1e293b; }
+
+.metal-weight-value--gold   { font-size: 1.05rem; font-weight: 800; color: #412e00; margin-right: 4px; }
+.metal-weight-unit--gold    { font-size: 0.88rem; color: #6d4e04; font-weight: 500; }
+.metal-weight-value--silver { font-size: 1.05rem; font-weight: 800; color: #1e293b; margin-right: 4px; }
+.metal-weight-unit--silver  { font-size: 0.88rem; color: #475569; font-weight: 500; }
+
+/* ── Info cards ────────────────────────────────────────────── */
+.metal-info-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  margin-bottom: 32px;
+}
+
+.metal-info-card {
+  border-radius: 18px;
+  padding: 28px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.35s ease, border-color 0.35s ease;
+  animation: fadeInUp 0.65s ease both;
+}
+
+.metal-info-card:nth-child(1) { animation-delay: 0.06s; }
+.metal-info-card:nth-child(2) { animation-delay: 0.14s; }
+.metal-info-card:nth-child(3) { animation-delay: 0.22s; }
+
+.metal-info-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.28), transparent);
+  transition: left 0.55s ease;
+  pointer-events: none;
+}
+
+.metal-info-card:hover::before { left: 150%; }
+
+.metal-info-card--gold {
+  background: linear-gradient(110deg, #e8c155, #dbb845, #dfce7a, #ccaf52, #cea532);
+  border-color: rgba(244,196,48,0.25);
+}
+
+.metal-info-card--gold:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: #7a5c02;
+  box-shadow: 0 16px 40px rgba(212,160,23,0.25);
+}
+
+.metal-info-card--silver {
+  background: linear-gradient(110deg, #e2e8f0, #cbd5e1, #dde4ef, #c8d2e0);
+  border-color: rgba(148,163,184,0.25);
+}
+
+.metal-info-card--silver:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: #475569;
+  box-shadow: 0 16px 40px rgba(100,116,139,0.25);
+}
+
+.metal-info-icon {
+  width: 54px; height: 54px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin: 0 auto 18px;
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+}
+
+.metal-info-card:hover .metal-info-icon { animation: rotateCoin 1.4s ease forwards; }
+
+.metal-info-icon--gold   { background: linear-gradient(135deg, #926f0e, #5b4403); color: #fde68a; box-shadow: 0 6px 18px rgba(146,64,14,0.35); }
+.metal-info-icon--silver { background: linear-gradient(135deg, #64748b, #334155); color: #e2e8f0; box-shadow: 0 6px 18px rgba(100,116,139,0.35); }
+
+.metal-info-title--gold   { font-size: 1.1rem; font-weight: 800; color: #412e00; margin-bottom: 10px; }
+.metal-info-title--silver { font-size: 1.1rem; font-weight: 800; color: #1e293b; margin-bottom: 10px; }
+.metal-info-text--gold    { font-size: 0.92rem; color: #6d4e04; line-height: 1.65; margin: 0; }
+.metal-info-text--silver  { font-size: 0.92rem; color: #475569; line-height: 1.65; margin: 0; }
+
+/* ── Disclaimer ────────────────────────────────────────────── */
+.metal-disclaimer {
+  border-radius: 12px;
+  padding: 20px 26px;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  animation: fadeInLeft 0.6s ease both;
+  transition: background 0.3s ease;
+}
+
+.metal-disclaimer--gold   { background: rgba(57,43,1,0.08); border-left: 4px solid #f4c430; color: #6d4e04; }
+.metal-disclaimer--silver { background: rgba(30,41,59,0.07); border-left: 4px solid #94a3b8; color: #475569; }
+
+.metal-disclaimer--gold:hover   { background: rgba(57,43,1,0.14); }
+.metal-disclaimer--silver:hover { background: rgba(30,41,59,0.12); }
+
+.metal-disclaimer--gold strong   { color: #231a01; font-weight: 800; }
+.metal-disclaimer--silver strong { color: #1e293b; font-weight: 800; }
+
+/* ── Loading / Error ───────────────────────────────────────── */
+.metal-loading {
+  text-align: center;
+  padding: 80px 20px;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+body.dark-mode .metal-page {
+  background: linear-gradient(135deg, #654702 0%, #93660c 50%, #523a01 100%) !important;
+}
+
+body.dark-mode .metal-page--silver {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%) !important;
+}
+
+body.dark-mode .metal-tab-btn--inactive {
+  background: rgba(20,12,2,0.45);
+  color: #e0c88a;
+  border-color: rgba(245,200,80,0.22);
+}
+
+body.dark-mode .metal-live-text { color: #a8a29e; }
+
+body.dark-mode .metal-rate-card--gold {
+  background: linear-gradient(135deg, #1e1408, #2a1d0a, #1a1106);
+  border-color: rgba(245,200,80,0.18);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+}
+
+body.dark-mode .metal-rate-card--gold:hover  { border-color: rgba(245,200,80,0.45); box-shadow: 0 20px 52px rgba(0,0,0,0.60); }
+body.dark-mode .metal-rate-city--gold        { color: #f5e0a0; }
+body.dark-mode .metal-rate-price--gold       { color: #ffd54f; }
+
+body.dark-mode .metal-rate-card--silver {
+  background: linear-gradient(135deg, #1e293b, #0f172a, #1a2535);
+  border-color: rgba(148,163,184,0.18);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+}
+
+body.dark-mode .metal-rate-card--silver:hover { border-color: rgba(148,163,184,0.45); box-shadow: 0 20px 52px rgba(0,0,0,0.60); }
+body.dark-mode .metal-rate-city--silver       { color: #e2e8f0; }
+body.dark-mode .metal-rate-price--silver      { color: #e2e8f0; }
+
+body.dark-mode .metal-table-wrapper--gold   { background: rgba(14,9,2,0.55); border-color: rgba(245,200,80,0.18); }
+body.dark-mode .metal-table-wrapper--silver { background: rgba(15,23,42,0.55); border-color: rgba(148,163,184,0.18); }
+
+body.dark-mode .metal-table-header--gold   { background: linear-gradient(135deg,#2a1d0a,#1e1408); color: #f5c842; }
+body.dark-mode .metal-table-header--silver { background: linear-gradient(135deg,#1e293b,#0f172a); color: #94a3b8; }
+
+body.dark-mode .metal-table-row--gold,
+body.dark-mode .metal-table-row--gold:nth-child(even)   { background: transparent; }
+body.dark-mode .metal-table-row--silver,
+body.dark-mode .metal-table-row--silver:nth-child(even) { background: transparent; }
+
+body.dark-mode .metal-table-cell--gold   { background: rgba(30,20,8,0.55); color: #c9ab6e; }
+body.dark-mode .metal-table-cell--silver { background: rgba(30,41,59,0.55); color: #94a3b8; }
+
+body.dark-mode .metal-info-card--gold   { background: linear-gradient(135deg,#1e1408,#2a1d0a,#1a1106); border-color: rgba(245,200,80,0.18); }
+body.dark-mode .metal-info-card--silver { background: linear-gradient(135deg,#1e293b,#0f172a,#1a2535); border-color: rgba(148,163,184,0.18); }
+
+body.dark-mode .metal-info-title--gold   { color: #f5e0a0; }
+body.dark-mode .metal-info-title--silver { color: #e2e8f0; }
+body.dark-mode .metal-info-text--gold    { color: #c9ab6e; }
+body.dark-mode .metal-info-text--silver  { color: #94a3b8; }
+
+body.dark-mode .metal-disclaimer--gold   { background: rgba(10,6,1,0.48); border-left-color: #c9a84c; color: #c9ab6e; }
+body.dark-mode .metal-disclaimer--silver { background: rgba(15,23,42,0.48); border-left-color: #64748b; color: #94a3b8; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .metal-rates      { grid-template-columns: 1fr 1fr !important; }
+  .metal-info-cards { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  .metal-page         { padding: 60px 16px; }
+  .metal-main-title   { font-size: 2rem; }
+  .metal-tab-row      { gap: 8px; }
+  .metal-tab-btn      { padding: 8px 20px; font-size: 0.9rem; }
+  .metal-rates        { grid-template-columns: 1fr !important; gap: 18px; }
+  .metal-rate-price   { font-size: 1.85rem; }
+  .metal-table-wrapper{ padding: 20px 14px; }
+  .metal-table-title  { font-size: 1.35rem; }
+  .metal-info-cards   { grid-template-columns: 1fr; }
+  .metal-controls     { flex-direction: column; align-items: flex-start; }
+  .metal-live-status  { margin-left: 0; }
+}
+
+@media (max-width: 480px) {
+  .metal-rate-card    { padding: 20px 16px; }
+  .metal-rate-price   { font-size: 1.65rem; }
+  .metal-table-header,
+  .metal-table-cell   { padding: 10px 10px; font-size: 0.82rem; }
+  .metal-info-card    { padding: 20px 16px; }
+  .metal-purity-btn   { padding: 6px 14px; font-size: 0.85rem; }
+}

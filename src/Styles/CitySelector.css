@@ -1,0 +1,192 @@
+/* ── Keyframes ─────────────────────────────────────────────── */
+@keyframes shimmerCity {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes fadeInCity {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+@keyframes skeletonPulse {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1;   }
+}
+
+/* ── Wrapper ───────────────────────────────────────────────── */
+.city-selector-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  animation: fadeInCity 0.4s ease both;
+}
+
+/* ── Buttons ───────────────────────────────────────────────── */
+.city-btn {
+  padding: 8px 20px;
+  border-radius: 50px;
+  border: 2px solid transparent;
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  letter-spacing: 0.02em;
+  outline: none;
+  font-family: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+/* shimmer sweep on hover */
+.city-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  border-radius: inherit;
+}
+
+.city-btn:hover::after  { opacity: 1; }
+.city-btn:active        { transform: scale(0.95) !important; }
+
+/* ── Active state (gold) ───────────────────────────────────── */
+.city-btn--active {
+  background: linear-gradient(135deg, #926f0e, #5b4403);
+  color: #fde68a;
+  border-color: #c9a84c;
+  box-shadow: 0 4px 14px rgba(146, 111, 14, 0.42);
+  transform: translateY(-2px);
+}
+
+.city-btn--active:hover {
+  box-shadow: 0 6px 20px rgba(146, 111, 14, 0.55);
+  transform: translateY(-3px);
+}
+
+/* ── Inactive state ────────────────────────────────────────── */
+.city-btn--inactive {
+  background: rgba(255, 255, 255, 0.18);
+  color: #412e00;
+  border-color: rgba(76, 58, 2, 0.28);
+  box-shadow: none;
+}
+
+.city-btn--inactive:hover {
+  background: rgba(255, 255, 255, 0.32);
+  border-color: rgba(146, 111, 14, 0.45);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(146, 111, 14, 0.18);
+}
+
+/* ── Skeleton loading ──────────────────────────────────────── */
+.city-skeleton {
+  height: 36px;
+  border-radius: 50px;
+  background: linear-gradient(
+    90deg,
+    rgba(200, 170, 80, 0.20) 25%,
+    rgba(200, 170, 80, 0.42) 50%,
+    rgba(200, 170, 80, 0.20) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmerCity 1.4s infinite, skeletonPulse 1.4s ease-in-out infinite;
+}
+
+/* ── Error text ────────────────────────────────────────────── */
+.city-error {
+  color: #b45309;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+body.dark-mode .city-btn--inactive {
+  background: rgba(20, 12, 2, 0.45);
+  color: #e0c88a;
+  border-color: rgba(245, 200, 80, 0.22);
+}
+
+body.dark-mode .city-btn--inactive:hover {
+  background: rgba(20, 12, 2, 0.65);
+  border-color: rgba(245, 200, 80, 0.45);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+}
+
+body.dark-mode .city-btn--active {
+  background: linear-gradient(135deg, #7a5c10, #4a3608);
+  color: #fde68a;
+  border-color: #c9a84c;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+
+body.dark-mode .city-btn--active:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55);
+}
+
+body.dark-mode .city-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(100, 80, 20, 0.25) 25%,
+    rgba(100, 80, 20, 0.50) 50%,
+    rgba(100, 80, 20, 0.25) 75%
+  );
+  background-size: 200% 100%;
+}
+
+body.dark-mode .city-error { color: #fca5a5; }
+
+/* ── Silver context overrides (inside SilverPriceTable) ────── */
+.silver-price-section .city-btn--active {
+  background: linear-gradient(135deg, #926f0e, #5b4403);
+  color: #fde68a;
+  border-color: #c9a84c;
+  box-shadow: 0 4px 14px rgba(146, 111, 14, 0.42);
+  transform: translateY(-2px);
+}
+
+.silver-price-section .city-btn--inactive {
+  background: linear-gradient(135deg, #926f0e, #5b4403);
+  color: #fde68a;
+  border-color: #c9a84c;
+  box-shadow: 0 4px 14px rgba(146, 111, 14, 0.42);
+  transform: translateY(-2px);
+}
+
+.silver-price-section .city-btn--inactive:hover {
+  background: linear-gradient(135deg, #926f0e, #5b4403);
+  color: #fde68a;
+  border-color: #c9a84c;
+  box-shadow: 0 4px 14px rgba(146, 111, 14, 0.42);
+  transform: translateY(-2px);
+}
+
+body.dark-mode .silver-price-section .city-btn--active {
+   background: rgba(20, 12, 2, 0.45);
+  color: #e0c88a;
+  border-color: rgba(245, 200, 80, 0.22);
+}
+
+body.dark-mode .silver-price-section .city-btn--inactive {
+  background: rgba(15, 23, 42, 0.55);
+  color: #94a3b8;
+  border-color: rgba(148, 163, 184, 0.22);
+}
+
+body.dark-mode .silver-price-section .city-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(100, 116, 139, 0.20) 25%,
+    rgba(100, 116, 139, 0.42) 50%,
+    rgba(100, 116, 139, 0.20) 75%
+  );
+  background-size: 200% 100%;
+}
