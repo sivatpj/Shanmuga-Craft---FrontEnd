@@ -1,3 +1,8 @@
+after pull from repo 
+
+step - 1 : Hit npm i in terminal
+step -2 : get the .env*
+
 Command	Connects to
 npm run dev	192.168.0.3:5000 (network, default)
 npm run dev:network	192.168.0.3:5000 (network)
@@ -7,5 +12,9 @@ git init
 git remote add origin https://github.com/sivatpj/Shanmuga-Craft---FrontEnd.git
 git add .
 git commit -m "Initial commit - restructured project"
-git branch -M main
-git push -f origin main
+git branch -M master
+git push  origin master
+
+if force push
+
+git push -f origin master
