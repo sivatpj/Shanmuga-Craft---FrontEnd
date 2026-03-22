@@ -31,16 +31,17 @@ const MetalPricesPage = () => {
   const [prevSilver,   setPrevSilver]   = useState({});
 
   const [lastUpdated, setLastUpdated] = useState(null);
-  const [loading, setLoading]         = useState(true);
+  const [restDone, setRestDone]       = useState(false);
   const [error,   setError]           = useState(null);
 
-  const { connected, priceData, error: streamError } = useSSE();
+  const { connected, sseReady, priceData, error: streamError } = useSSE();
+  const loading = !restDone || !sseReady;
 
   /* ── initial fetch ── */
   useEffect(() => {
     (async () => {
       try {
-        setLoading(true);
+        setRestDone(false);
         const res  = await fetch('/api/v1/prices');
         const json = await res.json();
         if (!json.success) throw new Error('Failed to load prices');
@@ -50,7 +51,7 @@ const MetalPricesPage = () => {
       } catch (err) {
         setError(err.message);
       } finally {
-        setLoading(false);
+        setRestDone(true);
       }
     })();
   }, []);

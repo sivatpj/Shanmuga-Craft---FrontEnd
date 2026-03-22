@@ -1,0 +1,4 @@
+Command	Connects to
+npm run dev	192.168.0.3:5000 (network, default)
+npm run dev:network	192.168.0.3:5000 (network)
+npm run dev:local	localhost:5000

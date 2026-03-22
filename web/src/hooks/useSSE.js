@@ -33,7 +33,7 @@ function normalizePayload(payload) {
             purity: g.purity,
             rate_per_gram: g.rate_per_gram,
             rate_per_sovereign: g.rate_per_sovereign ?? null,
-            market_timestamp: g.market_timestamp ?? payload.fetched_at,
+            market_timestamp: g.market_timestamp ?? null,
             fetched_timestamp: payload.fetched_at,
           })
         })
@@ -46,7 +46,7 @@ function normalizePayload(payload) {
             type: 'Silver',
             purity: s.purity,
             rate_per_gram: s.rate_per_gram,
-            market_timestamp: s.market_timestamp ?? payload.fetched_at,
+            market_timestamp: s.market_timestamp ?? null,
             fetched_timestamp: payload.fetched_at,
           })
         })
@@ -62,6 +62,7 @@ function normalizePayload(payload) {
 export function useSSE() {
   const esRef = useRef(null)
   const [connected, setConnected] = useState(false)
+  const [sseReady, setSseReady] = useState(false)
   const [priceData, setPriceData] = useState(null)
   const [lastUpdate, setLastUpdate] = useState(null)
   const [error, setError] = useState(null)
@@ -73,6 +74,7 @@ export function useSSE() {
 
     es.onopen = () => {
       setConnected(true)
+      setSseReady(true)
       setError(null)
       if (import.meta.env.DEV && SSE_DEBUG) console.log('[SSE] connected', { url })
     }
@@ -93,6 +95,7 @@ export function useSSE() {
     es.onerror = () => {
       // EventSource closes the connection before auto-reconnecting.
       setConnected(false)
+      setSseReady(true)
       setError('SSE connection lost')
       if (import.meta.env.DEV && SSE_DEBUG) console.warn('[SSE] connection lost — browser will retry automatically')
     }
@@ -105,5 +108,5 @@ export function useSSE() {
     }
   }, [])
 
-  return { connected, priceData, lastUpdate, error }
+  return { connected, sseReady, priceData, lastUpdate, error }
 }

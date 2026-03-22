@@ -47,6 +47,15 @@ function fmtTimeProd(ts) {
 
 const fmtTime = (ts) => DISPLAY_MODE === 0 ? fmtTimeDev(ts) : fmtTimeProd(ts)
 
+function isMarketHoursNow(now) {
+  const IST_OFFSET_MS = 5.5 * 60 * 60 * 1000
+  const ist = new Date(now.getTime() + IST_OFFSET_MS)
+  const dow = ist.getUTCDay() // 0=Sun, 6=Sat
+  if (dow === 0 || dow === 6) return false
+  const hhmm = ist.toISOString().slice(11, 19)
+  return hhmm >= '09:30:00' && hhmm < '18:30:00'
+}
+
 function fmtAgo(ts, now = new Date()) {
   const date = toDate(ts)
   if (!date) return null
@@ -133,6 +142,8 @@ export default function SilverPriceTable() {
   const getRate     = (city, p) => prices?.[city]?.[p]?.rate_per_gram    ?? null
   const getPrevRate = (city, p) => prevPrices?.[city]?.[p]?.rate_per_gram ?? null
   const getMarketTs = (city, p) => prices?.[city]?.[p]?.market_timestamp  ?? null
+
+  const showMarketTime = isMarketHoursNow(now)
 
   const getTrend = (city, p) => {
     const curr = getRate(city, p), prev = getPrevRate(city, p)
@@ -255,7 +266,7 @@ export default function SilverPriceTable() {
                     {diff ?? 'No change'}
                   </span>
                 </div>
-                {marketTs && (
+                {showMarketTime && marketTs && (
                   <div className="rate-market-ts">
                     <i className="fas fa-signal" style={{ fontSize: '0.7rem', marginRight: 5, opacity: 0.7 }} />
                     <span className="market-ts-label">Market</span>
@@ -276,7 +287,7 @@ export default function SilverPriceTable() {
                   <tr>
                     <th className="silver-table-header">Purity</th>
                     <th className="silver-table-header">Per Gram</th>
-                    <th className="silver-table-header">Market Time</th>
+                    {showMarketTime && <th className="silver-table-header">Market Time</th>}
                   </tr>
                 </thead>
                 <tbody>
@@ -294,9 +305,11 @@ export default function SilverPriceTable() {
                           style={{ fontWeight: p === selectedPurity ? 800 : 400, opacity: p === selectedPurity ? 1 : 0.7 }}>
                           <Ticker value={rate} />
                         </td>
-                        <td className="silver-table-cell" style={{ fontSize: '0.82rem', opacity: 0.85 }}>
-                          {fmtTime(marketTs)}
-                        </td>
+                        {showMarketTime && (
+                          <td className="silver-table-cell" style={{ fontSize: '0.82rem', opacity: 0.85 }}>
+                            {fmtTime(marketTs)}
+                          </td>
+                        )}
                       </tr>
                     )
                   })}

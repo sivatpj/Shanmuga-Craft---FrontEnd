@@ -49,6 +49,15 @@ function fmtTimeProd(ts) {
 
 const fmtTime = (ts) => DISPLAY_MODE === 0 ? fmtTimeDev(ts) : fmtTimeProd(ts)
 
+function isMarketHoursNow(now) {
+  const IST_OFFSET_MS = 5.5 * 60 * 60 * 1000
+  const ist = new Date(now.getTime() + IST_OFFSET_MS)
+  const dow = ist.getUTCDay() // 0=Sun, 6=Sat
+  if (dow === 0 || dow === 6) return false
+  const hhmm = ist.toISOString().slice(11, 19)
+  return hhmm >= '09:30:00' && hhmm < '18:30:00'
+}
+
 function fmtAgo(ts, now = new Date()) {
   const date = toDate(ts)
   if (!date) return null
@@ -137,6 +146,8 @@ export default function GoldPriceTable() {
   const getSovereign = (city, p) => prices?.[city]?.[p]?.rate_per_sovereign  ?? null
   const getMarketTs  = (city, p) => prices?.[city]?.[p]?.market_timestamp    ?? null
   const getPrevRate  = (city, p) => prevPrices?.[city]?.[p]?.rate_per_gram   ?? null
+
+  const showMarketTime = isMarketHoursNow(now)
 
   const getTrend = (city, p) => {
     const curr = getRate(city, p), prev = getPrevRate(city, p)
@@ -267,7 +278,7 @@ export default function GoldPriceTable() {
                     {diff ?? 'No change'}
                   </span>
                 </div>
-                {marketTs && (
+                {showMarketTime && marketTs && (
                   <div className="rate-market-ts">
                     <i className="fas fa-signal" style={{ fontSize: '0.7rem', marginRight: 5, opacity: 0.7 }} />
                     <span className="market-ts-label">Market</span>
@@ -289,7 +300,7 @@ export default function GoldPriceTable() {
                     <th className="table-header">Purity</th>
                     <th className="table-header">Per Gram</th>
                     <th className="table-header">Per Sovereign</th>
-                    <th className="table-header">Market Time</th>
+                    {showMarketTime && <th className="table-header">Market Time</th>}
                   </tr>
                 </thead>
                 <tbody>
@@ -310,9 +321,11 @@ export default function GoldPriceTable() {
                         <td className="table-cell table-cell-price" style={p === selectedPurity ? { fontWeight: 800 } : { opacity: 0.7 }}>
                           {sovereign ? <Ticker value={sovereign} /> : '—'}
                         </td>
-                        <td className="table-cell" style={{ fontSize: '0.82rem', opacity: 0.85 }}>
-                          {fmtTime(marketTs)}
-                        </td>
+                        {showMarketTime && (
+                          <td className="table-cell" style={{ fontSize: '0.82rem', opacity: 0.85 }}>
+                            {fmtTime(marketTs)}
+                          </td>
+                        )}
                       </tr>
                     )
                   })}
