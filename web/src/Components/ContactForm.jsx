@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const INQUIRY_TYPES = [
   { icon: 'fa-solid fa-coins',         label: 'Buy Coins'         },
   { icon: 'fa-solid fa-gift',          label: 'Gift Orders'       },
@@ -70,7 +72,7 @@ const ContactForm = () => {
 
     try {
       
-      const res = await fetch('http://localhost:5000/api/contact', {
+      const res = await fetch(`${API_URL}/api/contact`, {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify(formData),

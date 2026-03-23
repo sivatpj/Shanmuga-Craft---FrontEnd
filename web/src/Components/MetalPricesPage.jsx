@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useSSE } from '../hooks/useSSE';
+import { useSSEContext } from '../context/SSEContext';
 import CitySelector from './CitySelector';
-import '../Styles/MetalPricesPage.css';
+import '../styles/MetalPricesPage.css';
 
 const GOLD_PURITIES   = ['24K', '22K', '18K'];
 const SILVER_PURITIES = ['999', '925', '900'];
@@ -34,7 +34,7 @@ const MetalPricesPage = () => {
   const [restDone, setRestDone]       = useState(false);
   const [error,   setError]           = useState(null);
 
-  const { connected, sseReady, priceData, error: streamError } = useSSE();
+  const { connected, sseReady, priceData, error: streamError } = useSSEContext();
   const loading = !restDone || !sseReady;
 
   /* ── initial fetch ── */

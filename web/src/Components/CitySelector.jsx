@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchZones } from '../services/api';
-import '../Styles/CitySelector.css';
+import '../styles/CitySelector.css';
 
 const CitySelector = ({ selectedCities = [], onSelectionChange, type = 'Gold' }) => {
   const [activeCities, setActiveCities] = useState([]);
@@ -14,7 +14,7 @@ const CitySelector = ({ selectedCities = [], onSelectionChange, type = 'Gold' })
         setLoading(true);
         const data   = await fetchZones();
         const cities = data
-          .filter(z => z.status === 1 && z.type === type)
+          .filter(z => z.type === type)
           .map(z => z.city_name);
 
         setActiveCities(cities);

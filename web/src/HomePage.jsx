@@ -10,14 +10,13 @@ import './darkmode.css';
 import './styles/navigation.css';
 import './styles/components.css';
 import './styles/sections.css';
-import './styles/why-us.css'; 
-import './styles/aboutus.css'; 
+import './styles/why-us.css';
+import './styles/aboutus.css';
 import './styles/products.css';
 import './styles/contact.css';
 import coin from './images/coin.png';
 import shanmugacraftlogo from './images/shanmugacraftlogblue.png'
 import goldmake from './images/goldmake.jpeg';
-import statue from './images/statue.jpg';
 import techchaselogo from './images/techchaselogo.png';
 import goldcoin from './images/goldcoin.png';
 import silvercoin from './images/silvercoin.png';

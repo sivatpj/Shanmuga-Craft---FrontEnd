@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { useSSE } from '../hooks/useSSE'
+import { useSSEContext } from '../context/SSEContext'
 import CitySelector from './CitySelector'
-import '../Styles/SilverPrice.css'
+import '../styles/SilverPrice.css'
 import { fetchPrices } from '../services/api'
 
 const PURITIES = ['999', '925', '900']
@@ -103,7 +103,7 @@ export default function SilverPriceTable() {
   const [selectedCities, setSelectedCities] = useState([])
   const [now, setNow]                     = useState(() => new Date())
 
-  const { connected, priceData } = useSSE()
+  const { connected, priceData } = useSSEContext()
 
   useEffect(() => {
     const id = setInterval(() => setNow(new Date()), 1000)

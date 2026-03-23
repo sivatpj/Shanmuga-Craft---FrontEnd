@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { useSSE } from '../hooks/useSSE'
+import { useSSEContext } from '../context/SSEContext'
 import CitySelector from './CitySelector'
-import '../Styles/GoldPrice.css'
-import { fetchPrices } from '../services/api'
+import '../styles/GoldPrice.css'
+import { fetchPrices, fetchConfig } from '../services/api'
 
 const PURITIES = ['24K', '22K', '18K']
 
@@ -49,13 +49,13 @@ function fmtTimeProd(ts) {
 
 const fmtTime = (ts) => DISPLAY_MODE === 0 ? fmtTimeDev(ts) : fmtTimeProd(ts)
 
-function isMarketHoursNow(now) {
+function isMarketHoursNow(now, openTime, closeTime) {
   const IST_OFFSET_MS = 5.5 * 60 * 60 * 1000
   const ist = new Date(now.getTime() + IST_OFFSET_MS)
   const dow = ist.getUTCDay() // 0=Sun, 6=Sat
   if (dow === 0 || dow === 6) return false
   const hhmm = ist.toISOString().slice(11, 19)
-  return hhmm >= '09:30:00' && hhmm < '18:30:00'
+  return hhmm >= openTime && hhmm < closeTime
 }
 
 function fmtAgo(ts, now = new Date()) {
@@ -105,12 +105,19 @@ export default function GoldPriceTable() {
   const [error, setError]                 = useState(null)
   const [selectedCities, setSelectedCities] = useState([])
   const [now, setNow]                     = useState(() => new Date())
+  const [marketHours, setMarketHours]     = useState({ open: '09:30:00', close: '18:30:00' })
 
-  const { connected, priceData } = useSSE()
+  const { connected, priceData } = useSSEContext()
 
   useEffect(() => {
     const id = setInterval(() => setNow(new Date()), 1000)
     return () => clearInterval(id)
+  }, [])
+
+  useEffect(() => {
+    fetchConfig()
+      .then(cfg => setMarketHours({ open: cfg.marketOpenTime, close: cfg.marketCloseTime }))
+      .catch(() => {/* keep defaults */})
   }, [])
 
   useEffect(() => {
@@ -147,7 +154,7 @@ export default function GoldPriceTable() {
   const getMarketTs  = (city, p) => prices?.[city]?.[p]?.market_timestamp    ?? null
   const getPrevRate  = (city, p) => prevPrices?.[city]?.[p]?.rate_per_gram   ?? null
 
-  const showMarketTime = isMarketHoursNow(now)
+  const showMarketTime = isMarketHoursNow(now, marketHours.open, marketHours.close)
 
   const getTrend = (city, p) => {
     const curr = getRate(city, p), prev = getPrevRate(city, p)
