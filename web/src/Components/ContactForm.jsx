@@ -33,11 +33,6 @@ const HOW_IT_WORKS = [
     title: 'Quality Verified',
     desc:  'Every coin is BIS hallmark checked and packed with a certificate of authenticity.',
   },
-  {
-    icon:  'fa-solid fa-truck-fast',
-    title: 'Insured Delivery',
-    desc:  'Your order ships with full insurance. Track in real-time. Arrives in 1–5 business days.',
-  },
 ];
 
 const COIN_WEIGHTS = ['0.5g','1g','2g','4g','5g','8g','10g','20g','50g','100g+'];
@@ -187,16 +182,7 @@ const ContactForm = () => {
               ))}
             </div>
 
-            <div className="hiw__badge">
-              <i className="fa-solid fa-truck-fast hiw__badge-icon"></i>
-              <div className="hiw__badge-text">
-                <strong>Free Insured Pan-India Delivery</strong>
-                <span>
-                  Orders above <i className="fa-solid fa-indian-rupee-sign"></i> 5,000
-                  &middot; Fully tracked &middot; Zero damage guarantee
-                </span>
-              </div>
-            </div>
+
           </div>
 
         </div>
